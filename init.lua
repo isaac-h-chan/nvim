@@ -1,3 +1,7 @@
+# "eagerly" disable netrw as recommended by nvim-tree.lua 
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.cmd("set shiftwidth=4")
 vim.cmd("set tabstop=4")
 vim.cmd("set softtabstop=4")
@@ -18,11 +22,13 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.g.have_nerd_font = true
+vim.o.updatetime = 1000
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 
-vim.o.updatetime = 1000
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
   group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
   callback = function ()
