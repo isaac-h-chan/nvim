@@ -24,6 +24,9 @@ vim.opt.rtp:prepend(lazypath)
 
 vim.g.have_nerd_font = true
 vim.o.updatetime = 1000
+vim.opt.clipboard = "unnamedplus"
+vim.opt.signcolumn = "yes"
+vim.opt.scrolloff = 10
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
