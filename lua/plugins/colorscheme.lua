@@ -1,9 +1,7 @@
-return { 
-	"morhetz/gruvbox",
-	lazy = false,
+return { "ellisonleao/gruvbox.nvim",
 	priority = 1000,
-	config = function()
-		vim.o.background = "dark"
+	config =function()
+		require("gruvbox").setup()
 		vim.cmd.colorscheme "gruvbox"
 	end,
 }

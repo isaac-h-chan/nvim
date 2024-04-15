@@ -31,7 +31,7 @@ vim.opt.scrolloff = 10
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
-vim.keymap.set("n", "<leader>q", ":q!")
+vim.keymap.set('n', "<leader>q", ":q!")
 
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
   group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
