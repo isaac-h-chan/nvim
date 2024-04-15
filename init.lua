@@ -23,7 +23,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.g.have_nerd_font = true
-vim.o.updatetime = 1000
+vim.o.updatetime = 250
 vim.opt.clipboard = "unnamedplus"
 vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 10
@@ -31,6 +31,7 @@ vim.opt.scrolloff = 10
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
+vim.keymap.set("n", "<leader>q", ":q!")
 
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
   group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
