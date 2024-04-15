@@ -8,7 +8,7 @@ vim.cmd("set softtabstop=4")
 vim.cmd("set rnu")
 vim.cmd("set nu")
 vim.cmd("set ruler")
-	
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
