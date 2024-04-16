@@ -8,10 +8,7 @@ return {
 			"rafamadriz/friendly-snippets",
 		},
 		config = function()
-		
-			function name()
-				-- code
-			end
+
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
 
