@@ -6,13 +6,16 @@ return {
 			'L3MON4D3/LuaSnip',
 			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
+			"onsails/lspkind.nvim",
 		},
+
 		config = function()
 
 			local cmp = require("cmp")
 			local luasnip = require("luasnip")
+			local lspkind = require("lspkind")
 
-			   require("luasnip.loaders.from_vscode").lazy_load()
+		   require("luasnip.loaders.from_vscode").lazy_load()
 
 			cmp.setup({
 
@@ -25,6 +28,21 @@ return {
 				window = {
 					completion = cmp.config.window.bordered(),
 					documentation = cmp.config.window.bordered(),
+				},
+
+				formatting = {
+					format = lspkind.cmp_format({
+						mode = 'symbol', -- show only symbol annotations
+						maxwidth = 50,
+						ellipsis_char = '...',
+						show_labelDetails = true, -- show labelDetails in menu. Disabled by default
+						--[[
+						before = function (entry, vim_item)
+	
+							return vim_item
+						end
+						]]
+					})
 				},
 
 				mapping = {
@@ -62,8 +80,10 @@ return {
 							fallback()
 						end
 					end, { "i", "s" }),
-					
+
 					["<C-e>"] = cmp.mapping.abort(),
+					['<C-b>'] = cmp.mapping.scroll_docs(-4),
+					['<C-f>'] = cmp.mapping.scroll_docs(4),
 				},
 
 				sources = cmp.config.sources({

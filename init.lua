@@ -28,6 +28,7 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 10
 vim.opt.pumheight = 8
+-- vim.diagnostic.config( { virtual_text=false, underline=true})
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
