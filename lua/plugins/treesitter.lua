@@ -11,9 +11,9 @@ return {
 				enable = true,
 				keymaps = {
 					-- init_selection = "gnn",
-					node_incremental = ",",
+					node_incremental = "n",
 					-- scope_incremental = "grc",
-					node_decremental = ".",
+					node_decremental = "m",
 				}
 			},
 		})
