@@ -3,7 +3,7 @@ return {
 	build = ":TSUpdate",
 	config = function()
 		local configs = require("nvim-treesitter.configs")
-		configs.setup({ ensure_installed = { "c", "lua", "python", "javascript", "html", "prisma", "terraform", "markdown", "vim", "vimdoc"},
+		configs.setup({ ensure_installed = { "c", "lua", "python", "javascript", "html", "prisma", "terraform", "markdown", "markdown_inline", "vim", "vimdoc"},
 			highlight = { enable = true },
 			indent = { enable = true },
 			incremental_selection = {
