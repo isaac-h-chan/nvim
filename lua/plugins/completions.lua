@@ -7,6 +7,11 @@ return {
 			"saadparwaiz1/cmp_luasnip",
 			"rafamadriz/friendly-snippets",
 			"onsails/lspkind.nvim",
+			'neovim/nvim-lspconfig',
+			'hrsh7th/cmp-buffer',
+			'hrsh7th/cmp-path',
+			'hrsh7th/cmp-cmdline',
+			'windwp/nvim-autopairs',
 		},
 
 		config = function()
@@ -15,7 +20,14 @@ return {
 			local luasnip = require("luasnip")
 			local lspkind = require("lspkind")
 
-		   require("luasnip.loaders.from_vscode").lazy_load()
+		    require("luasnip.loaders.from_vscode").lazy_load()
+
+			-- If you want insert `(` after select function or method item
+			local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+			cmp.event:on(
+				'confirm_done',
+				cmp_autopairs.on_confirm_done()
+			)
 
 			cmp.setup({
 
