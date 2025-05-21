@@ -13,7 +13,7 @@ return {
 				ensure_installed = { "lua_ls", "clangd", "pyright" }
 			})
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			require("mason-lspconfig").setup_handlers {
+			require("mason-lspconfig").setup {
 				function (server_name) -- default handler (optional)
 					require("lspconfig")[server_name].setup {capabilities = capabilities}
 				end,
