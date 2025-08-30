@@ -23,11 +23,12 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 vim.g.have_nerd_font = true
-vim.o.updatetime = 250
+vim.opt.updatetime = 250
 vim.opt.clipboard = "unnamedplus"
 vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 10
 vim.opt.pumheight = 8
+vim.opt.winborder = "rounded"
 -- vim.diagnostic.config( { virtual_text=false, underline=true})
 
 vim.g.mapleader = " "
