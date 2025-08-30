@@ -34,6 +34,21 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 vim.keymap.set('n', "<leader>q", ":q!")
+
+-- Configure scroll distance to 1/3 of window height
+local function set_scroll_distance()
+	local height = vim.fn.winheight(0)
+	vim.wo.scroll = math.floor(height / 3)
+end
+
+vim.api.nvim_create_augroup("scroll_config", { clear = true })
+vim.api.nvim_create_autocmd({ "VimResized", "WinEnter" }, {
+	group = "scroll_config",
+	callback = set_scroll_distance,
+})
+
+-- Set initial scroll distance
+set_scroll_distance()
 --[[
 vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
   group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
