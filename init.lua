@@ -29,6 +29,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 10
 vim.opt.pumheight = 8
 vim.opt.winborder = "rounded"
+vim.opt.swapfile = false
 -- vim.diagnostic.config( { virtual_text=false, underline=true})
 
 vim.g.mapleader = " "
