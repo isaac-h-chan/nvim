@@ -38,6 +38,31 @@ vim.g.maplocalleader = "\\"
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
 vim.keymap.set('n', "<leader>q", ":q!")
 
+-- treesitter 
+vim.api.nvim_create_autocmd('FileType', {
+  callback = function()
+    -- Safely start native treesitter if a parser is available
+    pcall(vim.treesitter.start)
+  end,
+})
+
+-- Incremental node selection (native nvim 0.12, treesitter + LSP fallback)
+local function ts_select(dir)
+	return function()
+		if vim.treesitter.get_parser(nil, nil, { error = false }) then
+			require("vim.treesitter._select")[dir == 1 and "select_parent" or "select_child"](vim.v.count1)
+		else
+			vim.lsp.buf.selection_range(dir * vim.v.count1)
+		end
+	end
+end
+vim.keymap.set("x", "n", ts_select(1), { desc = "Expand selection" })
+vim.keymap.set("x", "m", ts_select(-1), { desc = "Shrink selection" })
+vim.keymap.set("n", "<CR>", function()
+	vim.cmd("normal! v")
+	ts_select(1)()
+end, { desc = "Start node selection" })
+
 -- Configure scroll distance to 1/3 of window height
 local function set_scroll_distance()
 	local height = vim.fn.winheight(0)

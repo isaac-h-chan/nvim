@@ -33,5 +33,6 @@ return {
 			---
 		}
 		vim.keymap.set("n", "<leader>n", ":NvimTreeToggle<CR>")
+		vim.keymap.set("n", "<leader>fn", ":NvimTreeFindFile<CR>")
 	end,
 }
