@@ -31,6 +31,8 @@ vim.opt.pumheight = 8
 vim.opt.winborder = "rounded"
 vim.opt.undofile = true
 vim.opt.swapfile = false
+
+require("folding")
 -- vim.diagnostic.config( { virtual_text=false, underline=true})
 
 vim.g.mapleader = " "

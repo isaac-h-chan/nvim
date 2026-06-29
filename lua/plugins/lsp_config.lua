@@ -9,15 +9,25 @@ return {
 		"williamboman/mason-lspconfig.nvim",
 		dependencies = { "mason.nvim" },
 		config = function()
-			require("mason-lspconfig").setup({
-				ensure_installed = { "lua_ls", "clangd", "pyright" }
-			})
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
-			require("mason-lspconfig").setup {
-				function (server_name) -- default handler (optional)
-					require("lspconfig")[server_name].setup {capabilities = capabilities}
-				end,
-			}
+			-- mason-lspconfig v2: configure servers via native vim.lsp.config,
+			-- then let mason-lspconfig auto-enable installed ones.
+			vim.lsp.config("*", { capabilities = capabilities })
+			vim.lsp.config("clangd", {
+				capabilities = capabilities,
+				cmd = {
+					"clangd",
+					"--background-index",
+					"--header-insertion=never",
+					-- let clangd extract system includes from the cross compilers
+					"--query-driver=**/arm-none-eabi-g*,**/aarch64-*-g*,**/aarch64-linux-g*",
+				},
+				root_markers = { "compile_commands.json", ".git" },
+			})
+			require("mason-lspconfig").setup({
+				ensure_installed = { "lua_ls", "clangd", "pyright" },
+				automatic_enable = true,
+			})
 		end
 	},
 	{
