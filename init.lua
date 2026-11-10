@@ -1,13 +1,13 @@
--- "eagerly" disable netrw as recommended by nvim-tree.lua 
+-- "eagerly" disable netrw as recommended by nvim-tree.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
-vim.cmd("set shiftwidth=4")
-vim.cmd("set tabstop=4")
-vim.cmd("set softtabstop=4")
-vim.cmd("set rnu")
-vim.cmd("set nu")
-vim.cmd("set ruler")
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.relativenumber = true
+vim.opt.number = true
+vim.opt.ruler = true
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -33,14 +33,13 @@ vim.opt.undofile = true
 vim.opt.swapfile = false
 
 require("folding")
--- vim.diagnostic.config( { virtual_text=false, underline=true})
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 vim.keymap.set("t", "<Esc>", "<C-\\><C-n>")
-vim.keymap.set('n', "<leader>q", ":q!")
+vim.keymap.set("n", "<leader>q", ":q!")
 
--- treesitter 
+-- treesitter
 vim.api.nvim_create_autocmd('FileType', {
   callback = function()
     -- Safely start native treesitter if a parser is available
@@ -79,12 +78,4 @@ vim.api.nvim_create_autocmd({ "VimResized", "WinEnter" }, {
 
 -- Set initial scroll distance
 set_scroll_distance()
---[[
-vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-  group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
-  callback = function ()
-    vim.diagnostic.open_float(nil, {focus=false})
-  end
-})
-]]
-require("lazy").setup("plugins")
+require("lazy").setup("plugins", { checker = { enabled = false } })

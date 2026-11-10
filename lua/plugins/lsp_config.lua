@@ -1,12 +1,12 @@
 return {
 	{
-		"williamboman/mason.nvim",
+		"mason-org/mason.nvim",
 		config = function()
 			require("mason").setup()
 		end
 	},
 	{
-		"williamboman/mason-lspconfig.nvim",
+		"mason-org/mason-lspconfig.nvim",
 		dependencies = { "mason.nvim" },
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
@@ -34,16 +34,12 @@ return {
 		"neovim/nvim-lspconfig",
 		dependencies = { "mason-lspconfig.nvim" },
 		config = function()
-			vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references)
+			-- Use nvim 0.11+ built-in LSP defaults:
+			--   grr references, gri implementation, grn rename, gra code action,
+			--   grt type definition, grx codelens, gO doc symbols, K hover,
+			--   [d ]d diagnostics, CTRL-S signature help (insert)
 			vim.keymap.set('n', 'gd', vim.lsp.buf.definition, {})
-			vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
-			vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename)
-			vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, {})
-
 			vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
-			vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-			vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-			-- vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist)
 		end
 	}
 }
