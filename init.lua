@@ -1,4 +1,4 @@
-# "eagerly" disable netrw as recommended by nvim-tree.lua 
+-- "eagerly" disable netrw as recommended by nvim-tree.lua 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
